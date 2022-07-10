@@ -4,7 +4,11 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.devtools.ksp'
+    id 'kotlin-parcelize'
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdk 32
@@ -57,11 +61,15 @@ android {
 
 dependencies {
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0"
+    //kapt "androidx.lifecycle:lifecycle-compiler:2.5.0"
+
     // Hilt
     def hilt_version = "2.42"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
 
     // Compose
@@ -74,16 +82,12 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
-    // Room
-    implementation "androidx.room:room-runtime:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
-
-    // Coroutine support for Room
-    implementation "androidx.room:room-ktx:2.4.2"
-
     // Compose Destinations
-    implementation "io.github.raamcosta.compose-destinations:core:1.5.13-beta"
+    implementation "io.github.raamcosta.compose-destinations:core:1.6.13-beta"
     ksp "io.github.raamcosta.compose-destinations:ksp:1.5.13-beta"
+
+    // Coil
+    implementation 'io.coil-kt:coil-compose:2.1.0'
 
     // Generated
     implementation 'androidx.core:core-ktx:1.8.0'
